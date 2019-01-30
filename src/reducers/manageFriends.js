@@ -3,9 +3,8 @@ export function manageFriends(state, action){
     case 'ADD_FRIEND':
       return {...state, friends: [...state.friends, action.friend]}
     case 'REMOVE_FRIEND':
-    const removalIndex = (state.friends.findIndex(friend => friend.id === action.id) - 1)
-      return {...state, friends: [...state.friends,
-        ...state.friends.slice(0, removalIndex)]
+    const index = state.friends.findIndex(friend => friend.id === action.id)
+      return {...state, friends: [...state.friends.slice(0, index), ...state.friends.slice(index + 1)]
       }
     default:
       return state
